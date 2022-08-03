@@ -19,6 +19,7 @@ export default function Shop() {
       setValid("Введите описание ");
       return;
     }
+
     setItems([
       ...items,
       {
@@ -27,6 +28,20 @@ export default function Shop() {
         desc: desc
       }
     ]);
+
+    const requestOptions = {
+      method: "POST",
+      body: JSON.stringify({name, desc}),
+      headers: {"Content-type": "application/json"}
+    }
+
+    fetch('https://covid-shop-mcs.herokuapp.com', requestOptions )
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch((err)=>{
+          console.error(err)
+        })
+
     setName("");
     setDesc("");
     setValid("");
