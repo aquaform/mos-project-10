@@ -1,4 +1,25 @@
 import React, { useState } from "react";
+import styled from "styled-components";
+
+import Button from './Button.styled'
+
+const Info = styled.div`
+  margin-left: 10px;
+`
+
+const Title = styled.h2`
+  font-size: 30px;
+`
+
+const Quantity = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+`
+
+const Total = styled.h3`
+  font-size: 16px;
+`
 
 export default function Item(props) {
   const [total, setTotal] = useState(0);
@@ -21,23 +42,23 @@ export default function Item(props) {
 
   return (
     <div className="item">
-      <div className="item-info">
-        <h2>{info.name}</h2>
+      <Info className="item-info">
+        <Title>{info.name}</Title>
         <p>{info.desc}</p>
-      </div>
-      <div className="item-quantity">
-        <button
+      </Info>
+      <Quantity>
+        <Button
           className="item-less"
           disabled={total === 0}
           onClick={handleRemoveClick}
         >
           -
-        </button>
-        <h3 className="item-total">{total ? total : ""}</h3>
-        <button className="item-more" onClick={handleAddClick}>
+        </Button>
+        <Total>{total ? total : ""}</Total>
+        <Button className="item-more" onClick={handleAddClick}>
           +
-        </button>
-      </div>
+        </Button>
+      </Quantity>
     </div>
   );
 }

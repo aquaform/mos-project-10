@@ -1,20 +1,32 @@
 import React from "react";
 import Item from "./Item";
+import styled from "styled-components";
+
+import Button from './Button.styled'
+
+const List = styled.ul`
+  list-style: none;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+`
+const ListItem = styled.li`
+  margin-bottom: 80px;
+`
 
 export default function ItemsList(props) {
   return (
-    <ul className="shop">
+    <List className="shop">
       {props.items.map((item) => (
-        <li key={item.id}>
+        <ListItem key={item.id}>
           <Item info={item} />
-          <button
+          <Button
             className="btn-delete"
             onClick={() => props.onDeleteClick(item.id)}
           >
             Удалить
-          </button>
-        </li>
+          </Button>
+        </ListItem>
       ))}
-    </ul>
+    </List>
   );
 }
